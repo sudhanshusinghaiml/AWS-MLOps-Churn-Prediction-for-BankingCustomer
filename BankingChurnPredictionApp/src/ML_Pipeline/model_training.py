@@ -1,5 +1,6 @@
 import pandas as pd
-
+import os
+import pickle
 from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -30,7 +31,7 @@ def data_split(df, target_variable, size, seed):
         return x_train, x_test, y_train, y_test
 
 
-def create_model_pipeline(x_train, y_train):
+def training_model_pipeline(x_train, x_test, y_train, y_test):
     try:
         lgbm_model = LGBMClassifier(boosting_type='dart', num_leaves=45, max_depth=6,
                                     learning_rate=0.1, n_estimators=90, class_weight={0: 1, 1: 3},
@@ -78,26 +79,9 @@ def create_model_pipeline(x_train, y_train):
             ('random_forest_classification', rf_model_pipeline),
             ('decision_tree', dt_model_pipeline)
         ]
-    except Exception as e:
-        print('Error in model_training.create_model_pipeline', e)
-    else:
-        return models
-
-
-def model_evaluation(x_train, x_test, y_train, y_test, models):
-    """
-            Script to train linear regression and regularization models
-            :param x_train: training split
-            :param y_train: training target vector
-            :param x_test: test split
-            :param y_test: test target vector
-            :return: DataFrame of model evaluation, model objects
-        """
-    try:
 
         output_df = pd.DataFrame()
         columns_for_comparison = ['Model', 'Training_Recall', 'Test_Recall', 'Diff b/w Train & Test Score']
-        model_estimators = []
 
         for name, model in models:
             # Model training
@@ -117,7 +101,15 @@ def model_evaluation(x_train, x_test, y_train, y_test, models):
             df_score = pd.DataFrame([score_dict])
             output_df = pd.concat([output_df, df_score], ignore_index=True)
 
+        print(output_df.sort_values(by=['Training_Recall', 'Test_Recall'], ascending=False))
+
+        # Saving model to disk for prediction
+        filename = '../output/BankingCustomerChurnPrediction.pkl'
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        with open(filename, 'wb+') as f:
+            pickle.dump(rf_model_pipeline, f)
+
     except Exception as e:
         print('Error in model_training.model_evaluation function', e)
     else:
-        return output_df
+        return models, output_df

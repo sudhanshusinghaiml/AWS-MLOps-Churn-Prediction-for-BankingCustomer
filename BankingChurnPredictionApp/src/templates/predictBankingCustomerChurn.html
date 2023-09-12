@@ -26,87 +26,71 @@
 
 
         <form action="\predictBankingCustomerChurn.html" method="post">
-
+CustomerId
 
             <div class="row">
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Property Type</h5>
-                            <!-- Departure -->
-                            <select name="PropertyType" id="PropertyType" required="required">
-                                <option value="1">1 BHK</option>
-                                <option value="2">2 BHK</option>
-                                <option value="3">3 BHK</option>
-                                <option value="4">4 BHK</option>
-								<option value="5">5 BHK</option>
-								<option value="6">6 BHK</option>
-                            </select>
+                            <h5 class="card-title">CustomerId</h5>
+                            <!-- CustomerId -->
+							<input type="CustomerId-local" name="CustomerId" id="CustomerId" required="required">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Club House</h5>
-                            <!-- Arrival -->
-                            <select name="Club House" id="Club House" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-							</select>
+                            <h5 class="card-title">Surname</h5>
+                            <!-- Surname -->
+							<input type="surname-local" name="Surname" id="Surname" required="required">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <!-- Source -->
-                            <h5 class="card-title">School/University In Township</h5>
-                            <select name="SchoolUniversityInTownship" id="SchoolOrUniversityInTownship" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-							</select>
+                            <h5 class="card-title">Credit Score</h5>
+                            <!-- CreditScore -->
+                            <input type="creditscore-local" name="CreditScore" id="CreditScore" required="required">
                         </div>
                     </div>
                 </div>
 			</div>
-
             <br>
             <br>
             <div class="row">
-                <div class="col-sm-4">
+				<div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <!-- Destination -->
-                            <h5 class="card-title">Hospital In Township</h5>
-                            <select name="Hospital_In_Township" id="Hospital_In_Township" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                            <!-- Geography -->
+                            <h5 class="card-title">Geography</h5>
+                            <select name="Geography" id="Geography" required="required">
+                                <option value="Germany">Germany</option>
+                                <option value="France">France</option>
+								<option value="Spain">Spain</option>
 							</select>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Mall In Township</h5>
-                            <!-- Total Stops -->
-                            <select name="Mall_In_Township" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                    </div>
+					<div class="card">
+						<div class="card-body">
+							<!-- Gender -->
+							<h5 class="card-title">Gender</h5>
+							<select name="Gender" id="Gender" required="required">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+						</div>
+					</div>
                 </div>
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Jogging Track</h5>
-                            <!-- Total Stops -->
-                            <select name="Park_Jogging_Track" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
+                            <!-- Age -->
+                            <h5 class="card-title">Age</h5>
+                            <input type="age-local" name="Age" id="Age" required="required">
                         </div>
                     </div>
                 </div>
@@ -117,33 +101,32 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <!-- Destination -->
-                            <h5 class="card-title">Swimming Pool</h5>
-                            <select name="Swimming_Pool" id="Swimming_Pool" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                            <h5 class="card-title">Tenure</h5>
+                            <!-- Tenure-->
+                            <input type="tenure-local" name="Tenure" id="Tenure" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Balance</h5>
+                            <!-- Balance -->
+                            <input type="balance-local" name="Balance" id="Balance" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- NumOfProducts -->
+                            <h5 class="card-title">NumOfProducts</h5>
+                            <select name="NumOfProducts" id="NumOfProducts" required="required">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
 							</select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gym</h5>
-                            <!-- Total Stops -->
-                            <select name="Gym" required="required">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Property Area in SqFt</h5>
-                            <!-- Total Stops -->
-                            <input type="property-local" name="Property Area in SqFt" id="Property Area in SqFt" required="required">
                         </div>
                     </div>
                 </div>
@@ -151,30 +134,36 @@
             <br>
             <br>
 			<div class="row">
-				<div class="col-sm-4">
+                <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Price By SubArea</h5>
-                            <!-- Total Stops -->
-                            <input type="Price_By_SubArea-local" name="Price_By_SubArea" id="Property Area in SqFt" required="required">
+                            <h5 class="card-title">HasCrCard</h5>
+                            <!-- HasCrCard -->
+                            <select name="HasCrCard" required="required">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-4">
+					<div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">IsActiveMember</h5>
+                            <!-- IsActiveMember -->
+                            <select name="IsActiveMember" required="required">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 				<div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Amenities Score</h5>
+                            <h5 class="card-title">EstimatedSalary</h5>
                             <!-- Total Stops -->
-                            <input type="Amenities_Score-local" name="Amenities_Score" id="Amenities_Score" required="required">
-                        </div>
-                    </div>
-                </div>
-				<div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Price By Amenities Score</h5>
-                            <!-- Total Stops -->
-                            <input type="Price_By_Amenities_Score-local" name="Price_By_Amenities_Score" id="Price_By_Amenities_Score" required="required">
+                            <input type="EstimatedSalary-local" name="EstimatedSalary" id="EstimatedSalary" required="required">
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,7 @@
-import os
-import numpy as np
-import pandas as pd
-import joblib
-import json
 from flask import Flask, request, render_template, jsonify
 from flask_cors import cross_origin
-from PredictCustomerChurn import customer_churn_prediction
 from ModelTrainingEngine import model_training_pipeline
+import CustomerChurnPredictor
 
 # 1. Create the application object
 BankingChurnPredictionApp = Flask(__name__)
@@ -40,19 +35,14 @@ def home():
 @BankingChurnPredictionApp.route('/predictBankingCustomerChurn.html', methods=['GET', 'POST'])
 @cross_origin()
 def predict_banking_customer_churn():
-    data_df = pd.DataFrame(request.json("data"))
-    status, result = customer_churn_prediction(data_df)
-    if status == 200:
-        result = json.loads(result.to_json(orient="records"))
-        resp = jsonify({"result": result})
-    else:
-        resp = jsonify({"errorDetails": result})
-    resp.status_code = status
-
-    if result == 0:
-        result_string = 'Yes, customer is likely to churn'
-    else:
-        result_string = 'No, customer is not likely to churn'
+    result_string = ''
+    if request.method == 'POST':
+        to_predict_dict = request.form.to_dict()
+        result = CustomerChurnPredictor.predictor(to_predict_dict)
+        if result == 1:
+            result_string = 'Yes, customer is likely to churn'
+        else:
+            result_string = 'No, customer is not likely to churn'
 
     return render_template('predictBankingCustomerChurn.html', prediction_text=result_string)
 

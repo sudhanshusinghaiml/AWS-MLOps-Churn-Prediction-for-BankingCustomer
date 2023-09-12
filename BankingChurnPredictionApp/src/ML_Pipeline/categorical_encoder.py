@@ -73,7 +73,6 @@ class CategoricalEncoder(BaseEstimator, TransformerMixin):
         self : encoder
             Returns self.
         """
-
         # Encode all categorical cols by default
         if self.cols is None:
             self.cols = [c for c in X if str(X[c].dtype) == 'object']
@@ -134,11 +133,14 @@ class CategoricalEncoder(BaseEstimator, TransformerMixin):
         pandas DataFrame
             Input DataFrame with transformed columns
         """
-
+        # Xo = pd.DataFrame(X)
         Xo = X.copy()
         # Perform label encoding transformation
         for col, lmap in self.label_encoder_maps.items():
             # Map the column
+            # print(col)
+            # print(lmap)
+            # print(type(Xo))
             Xo[col] = Xo[col].map(lmap)
             Xo[col].fillna(-1, inplace=True)  # Filling new values with -1
 
