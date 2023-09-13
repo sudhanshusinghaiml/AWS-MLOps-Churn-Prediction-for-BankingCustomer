@@ -1,8 +1,8 @@
-resource "aws_codebuild_project" "banking_customer_churn_prediction" {
+resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
 
   badge_enabled          = false
   build_timeout          = "60"
-  description            = "customer_churn_prediction_codebuild_project"
+  description            = "Banking Customer Churn Prediction Code Build Project"
   concurrent_build_limit = 1
   name                   = "banking_customer_churn_prediction_project"
   source_version         = "ref/heads/master"
@@ -12,8 +12,8 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction" {
 
   artifacts {
     encryption_disabled    = false
-    location               = ""
-    name                   = "banking-churn-prediction-app"
+    location               =  local.code_commit_repo_url
+    name                   = "banking-customer-churn-prediction-app"
     namespace_type         = "NONE"
     override_artifact_name = false
     packaging              = "ZIP"
@@ -30,18 +30,19 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction" {
     environment_variable {
       name  = "AWS_DEFAULT_REGION"
       type  = "PLAINTEXT"
-      value = "us-east-1"
+      value = var.aws_region
     }
 
     environment_variable {
       name  = "AWS_ACCOUNT_ID"
       type  = "PLAINTEXT"
-      value = ""
+      value = var.aws_account_id
     }
+
     environment_variable {
       name  = "IMAGE_REPO_NAME"
       type  = "PLAINTEXT"
-      value = "churn-application-repo"
+      value = var.image_repository_name
     }
 
     environment_variable {

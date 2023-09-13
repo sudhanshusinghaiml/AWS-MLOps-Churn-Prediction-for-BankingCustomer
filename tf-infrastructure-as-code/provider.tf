@@ -19,6 +19,5 @@ terraform {
     bucket = "terraform-backend-banking-churn-prediction-app"
     key    = "banking-churn-prediction-app/backend/terraform.tfstate"
     region = "us-east-1"
-    # shared_credentials_files = ["~/.aws/credentials"]
   }
 }
