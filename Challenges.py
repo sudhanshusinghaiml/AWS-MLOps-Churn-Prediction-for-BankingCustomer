@@ -49,5 +49,13 @@ Terraform Commands-
         --> we can also add multiple target resources
     
 """
-
+    1. Build failed due to below errors -  YAML_FILE_ERROR Message: Invalid buildspec phase name: artifacts.
+       - Corrected the Identation in the buildspec.yml file.
+    
+    2. An error occurred (AccessDeniedException) when calling the GetAuthorizationToken operation: 
+       User: arn:aws:sts::XXXXXXXX:assumed-role/banking-customer-churn-codebuild-service-role/
+       AWSCodeBuild-886ba1b7-1274-498e-a6f2-83f325dac60a is not authorized to perform: ecr:GetAuthorizationToken 
+       on resource: * because no identity-based policy allows the ecr:GetAuthorizationToken action
+       
+       - Attached AmazonElasticContainerRegistryPublicPowerUser policy to the service role -> banking-customer-churn-codebuild-service-role
 """
