@@ -1,33 +1,36 @@
 resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
-
   badge_enabled          = false
-  build_timeout          = "60"
-  description            = "Banking Customer Churn Prediction Code Build Project"
+  build_timeout          = 60
   concurrent_build_limit = 1
+  description            = "Banking Customer Churn Prediction Code Build Project"
+  encryption_key         = "arn:aws:kms:us-east-1:959999474169:alias/aws/s3"
   name                   = "banking_customer_churn_prediction_project"
-  source_version         = "ref/heads/master"
+  project_visibility     = "PRIVATE"
   queued_timeout         = 480
   service_role           = local.code_build_service_role
-
+  source_version         = "refs/heads/develop"
+  tags                   = local.tags
+  tags_all               = local.tags
 
   artifacts {
-    encryption_disabled    = false
-    location               =  local.code_commit_repo_url
-    name                   = "banking-customer-churn-prediction-app"
-    namespace_type         = "NONE"
-    override_artifact_name = false
+    encryption_disabled    = true
+    location               = "terraform-backend-banking-churn-prediction-app"
+    name                   = "banking_customer_churn_prediction_project"
+    namespace_type         = "BUILD_ID"
+    override_artifact_name = true
     packaging              = "ZIP"
+    path                   = "banking-churn-prediction-app/codebuild-artifacts-output/"
     type                   = "S3"
   }
 
   environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
-    image                       = "aws/codebuild/standard:5.0"
+    image                       = "aws/codebuild/standard:7.0"
     image_pull_credentials_type = "CODEBUILD"
     privileged_mode             = true
     type                        = "LINUX_CONTAINER"
-
-    environment_variable {
+  
+     environment_variable {
       name  = "AWS_DEFAULT_REGION"
       type  = "PLAINTEXT"
       value = var.aws_region
@@ -35,14 +38,14 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
 
     environment_variable {
       name  = "AWS_ACCOUNT_ID"
-      type  = "PLAINTEXT"
-      value = var.aws_account_id
+      type = "PLAINTEXT"
+      value  = var.aws_account_id
     }
-
+  
     environment_variable {
       name  = "IMAGE_REPO_NAME"
       type  = "PLAINTEXT"
-      value = var.image_repository_name
+      value = aws_ecr_repository.banking_customer_churn_ecr_repo.name
     }
 
     environment_variable {
@@ -57,7 +60,6 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
     cloudwatch_logs {
       status = "ENABLED"
     }
-
     s3_logs {
       encryption_disabled = false
       status              = "DISABLED"
@@ -65,20 +67,18 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
   }
 
   source {
-    type                = "CODECOMMIT"
-    insecure_ssl        = false
+    buildspec           = "buildspec.yml"
     git_clone_depth     = 1
+    insecure_ssl        = false
+    location            = local.code_commit_repo_url
     report_build_status = false
-    location            = local.code_commit_location
+    type                = "CODECOMMIT"
 
     git_submodules_config {
       fetch_submodules = false
     }
   }
 
-  tags = local.tags
+  depends_on = [ aws_ecr_repository.banking_customer_churn_ecr_repo ]
 
-  depends_on = [
-    aws_ecr_repository.banking_customer_churn_ecr_repo
-  ]
 }

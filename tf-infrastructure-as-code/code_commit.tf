@@ -1,7 +1,8 @@
 resource "aws_codecommit_repository" "banking_customer_churn_prediction_repo" {
   repository_name = "banking_customer_churn_prediction_repo"
   description     = "This is the code repository for Churn Prediction for Banking Customer"
-  default_branch  = "master"
+  default_branch  = "develop"
+  tags            = local.tags
 }
 
 output "churn_repo_clone_url_http" {

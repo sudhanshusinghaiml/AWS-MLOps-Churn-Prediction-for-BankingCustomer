@@ -11,10 +11,5 @@ variable "aws_profile" {
 
 variable "aws_account_id" {
   description = "AWS Account ID to be used for executing Terraform Scripts"
-  default     = ""
-}
-
-variable "image_repository_name" {
-  description = "AWS Account ID to be used for executing Terraform Scripts"
-  default     = "banking-customer-churn-image"
+  default     = "959999474169"
 }
