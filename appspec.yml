@@ -1,0 +1,23 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+          ContainerName: "customer_churn_container"
+          ContainerPort: 5000
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: [ "subnet-0911024c785757682", "subnet-05189d7bb4490ce61", "subnet-0d1692e706f5ba52a",
+                       "subnet-03fdb4e1e28453ff1", "subnet-091adbb37f77e64a7", "subnet-0709706a350f530e9" ]
+            SecurityGroups: [ "sg-039a2f03d65350909" ]
+            AssignPublicIp: "ENABLED"
+        CapacityProviderStrategy:
+          - Base: 1
+            CapacityProvider: "FARGATE_SPOT"
+            Weight: 2
+          - Base: 0
+            CapacityProvider: "FARGATE"
+            Weight: 1

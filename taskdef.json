@@ -1,0 +1,35 @@
+{
+  "memory":"4096",
+  "networkMode":"awsvpc",
+  "cpu":"1024",
+  "family": "customer_churn_task_definition",
+  "taskRoleArn": "arn:aws:iam::959999474169:role/ECSTaskExecutionRole",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "containerDefinitions": [
+    {
+      "name": "customer_churn_container",
+      "image": "123456789012.dkr.ecr.us-west-2.amazonaws.com/aws-nodejs-sample:v1",
+      "memory": 200,
+      "cpu": 10,
+      "essential": true,
+      "logConfiguration":{
+            "logDriver":"awslogs",
+            "options":{
+               "awslogs-group":"/ecs/",
+               "awslogs-region":"us-east-1",
+               "awslogs-stream-prefix":"ecs"
+            }
+         },
+      "portMappings":[
+            {
+               "hostPort":5000,
+               "containerPort":5000,
+               "protocol":"tcp"
+            }
+         ],
+      "memoryReservation":1024
+    }
+  ]
+}
