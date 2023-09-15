@@ -2,10 +2,6 @@
 The Python "AttributeError: 'tuple' object has no attribute" occurs when we access an attribute that doesn't exist on a tuple.
 
 """
-
-churn_repo_clone_url_http = "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/banking_customer_churn_prediction_repo"
-churn_repo_clone_url_ssh = "ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/banking_customer_churn_prediction_repo"
-
 # ==============================================
 
 """
@@ -59,3 +55,14 @@ Terraform Commands-
        
        - Attached AmazonElasticContainerRegistryPublicPowerUser policy to the service role -> banking-customer-churn-codebuild-service-role
 """
+
+application_url = "http://banking-customer-churn-alb-761037886.us-east-1.elb.amazonaws.com"
+churn_repo_clone_url_http = "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/banking_customer_churn_repo"
+churn_repo_clone_url_ssh = "ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/banking_customer_churn_repo"
+
+code_pipeline_service_role = "arn:aws:iam::959999474169:role/codepipeline_service_role"
+
+
+import aws_codedeploy_app.banking-customer-churn-app banking-customer-churn-app
+
+terraform import aws_codedeploy_deployment_group.banking-customer-churn-app-deploy banking-customer-churn-app:banking-customer-churn-app-deploy

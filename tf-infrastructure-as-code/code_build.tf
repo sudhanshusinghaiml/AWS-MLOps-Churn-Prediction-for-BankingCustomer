@@ -1,10 +1,10 @@
-resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
+resource "aws_codebuild_project" "banking_customer_churn_project" {
   badge_enabled          = false
   build_timeout          = 60
   concurrent_build_limit = 1
   description            = "Banking Customer Churn Prediction Code Build Project"
   encryption_key         = "arn:aws:kms:us-east-1:959999474169:alias/aws/s3"
-  name                   = "banking_customer_churn_prediction_project"
+  name                   = "banking_customer_churn_project"
   project_visibility     = "PRIVATE"
   queued_timeout         = 480
   service_role           = local.code_build_service_role
@@ -14,12 +14,12 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
 
   artifacts {
     encryption_disabled    = true
-    location               = "terraform-backend-banking-churn-prediction-app"
-    name                   = "banking_customer_churn_prediction_project"
+    location               = aws_s3_bucket.terrform_codebuild.bucket
+    name                   = "banking_customer_churn_project"
     namespace_type         = "BUILD_ID"
     override_artifact_name = true
     packaging              = "ZIP"
-    path                   = "banking-churn-prediction-app/codebuild-artifacts-output/"
+    path                   = "codebuild_artifacts_output/"
     type                   = "S3"
   }
 
@@ -70,7 +70,7 @@ resource "aws_codebuild_project" "banking_customer_churn_prediction_project" {
     buildspec           = "buildspec.yml"
     git_clone_depth     = 1
     insecure_ssl        = false
-    location            = local.code_commit_repo_url
+    location            = aws_codecommit_repository.banking_customer_churn_repo.clone_url_http
     report_build_status = false
     type                = "CODECOMMIT"
 

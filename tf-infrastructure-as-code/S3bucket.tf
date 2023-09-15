@@ -1,14 +1,14 @@
-resource "aws_s3_bucket" "terraform-backend-banking-churn-prediction-app" {
-  bucket = "terraform-backend-banking-churn-prediction-app"
+resource "aws_s3_bucket" "terraform_backend" {
+  bucket = "terraform-backend-15091025"
   tags   = local.tags
 }
 
-resource "aws_s3_object" "codebuild" {
-  bucket = aws_s3_bucket.terraform-backend-banking-churn-prediction-app.id
-  key    = "banking-churn-prediction-app/codebuild-artifacts-output/"
+resource "aws_s3_bucket" "terrform_codebuild" {
+  bucket = "terrform-codebuild-15091025"
+  tags   = local.tags
 }
 
-# resource "aws_s3_object" "codepipeline" {
-#   bucket = aws_s3_bucket.terraform-backend-banking-churn-prediction-app.id
-#   key    = "banking-churn-prediction-app/codepipeline-artifacts-output/"
-# }
+resource "aws_s3_bucket" "terraform_codepipeline" {
+  bucket = "terraform-codepipeline-15091025"
+  tags   = local.tags
+}
