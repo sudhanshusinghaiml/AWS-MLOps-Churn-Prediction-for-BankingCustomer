@@ -31,9 +31,9 @@ resource "aws_ecs_service" "banking_customer_churn_service" {
   }
 
   network_configuration {
-    security_groups = [ "sg-039a2f03d65350909" ]
+    security_groups = locals.security_groups
     assign_public_ip = true
-    subnets = local.subnets
+    subnets = locals.subnets
   }
 
   depends_on = [aws_ecs_task_definition.customer_churn_task_definition]

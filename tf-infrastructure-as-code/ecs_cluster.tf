@@ -7,7 +7,7 @@ resource "aws_ecs_cluster" "banking_customer_churn_cluster" {
     value = "disabled"
   }
 
-  depends_on = [aws_lb_listener.banking_customer_churn_lb_listener]
+  depends_on = [aws_lb_listener.banking_customer_churn_lb_listener1, aws_lb_listener.banking_customer_churn_lb_listener2]
 }
 
 resource "aws_ecs_cluster_capacity_providers" "cluster_capacity_provider" {
@@ -21,5 +21,5 @@ resource "aws_ecs_cluster_capacity_providers" "cluster_capacity_provider" {
     capacity_provider = "FARGATE"
   }
 
-  depends_on = [ aws_ecs_cluster.banking_customer_churn_cluster]
+  depends_on = [aws_ecs_cluster.banking_customer_churn_cluster]
 }

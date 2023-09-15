@@ -87,8 +87,7 @@ ipython_config.py
 *.tfstate*
 *.terraform*
 *.bak*
-*tf-infrastructure-as-code/locals.tf
-variables.tf
+
 
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
