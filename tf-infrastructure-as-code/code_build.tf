@@ -29,8 +29,8 @@ resource "aws_codebuild_project" "banking_customer_churn_project" {
     image_pull_credentials_type = "CODEBUILD"
     privileged_mode             = true
     type                        = "LINUX_CONTAINER"
-  
-     environment_variable {
+
+    environment_variable {
       name  = "AWS_DEFAULT_REGION"
       type  = "PLAINTEXT"
       value = var.aws_region
@@ -38,10 +38,10 @@ resource "aws_codebuild_project" "banking_customer_churn_project" {
 
     environment_variable {
       name  = "AWS_ACCOUNT_ID"
-      type = "PLAINTEXT"
-      value  = var.aws_account_id
+      type  = "PLAINTEXT"
+      value = var.aws_account_id
     }
-  
+
     environment_variable {
       name  = "IMAGE_REPO_NAME"
       type  = "PLAINTEXT"
@@ -79,6 +79,6 @@ resource "aws_codebuild_project" "banking_customer_churn_project" {
     }
   }
 
-  depends_on = [ aws_ecr_repository.banking_customer_churn_ecr_repo ]
+  depends_on = [aws_ecr_repository.banking_customer_churn_ecr_repo]
 
 }

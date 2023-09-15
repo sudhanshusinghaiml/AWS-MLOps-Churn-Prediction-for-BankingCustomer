@@ -2,7 +2,7 @@
   "memory":"4096",
   "networkMode":"awsvpc",
   "cpu":"1024",
-  "family": "customer_churn_task_definition",
+  "family": "customer_churn_taskdefinition",
   "taskRoleArn": "arn:aws:iam::959999474169:role/ECSTaskExecutionRole",
   "requiresCompatibilities": [
     "FARGATE"
@@ -10,7 +10,7 @@
   "containerDefinitions": [
     {
       "name": "customer_churn_container",
-      "image": "123456789012.dkr.ecr.us-west-2.amazonaws.com/aws-nodejs-sample:v1",
+      "image": "959999474169.dkr.ecr.us-east-1.amazonaws.com/aws-nodejs-sample:v1",
       "memory": 200,
       "cpu": 10,
       "essential": true,
