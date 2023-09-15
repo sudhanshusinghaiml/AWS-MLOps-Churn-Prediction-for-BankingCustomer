@@ -87,7 +87,7 @@ ipython_config.py
 *.tfstate*
 *.terraform*
 *.bak*
-tf-infrastructure-as-code\locals.tf
+*tf-infrastructure-as-code\locals.tf
 variables.tf
 
 # pyenv
