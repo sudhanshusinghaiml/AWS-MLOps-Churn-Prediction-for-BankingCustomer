@@ -1,35 +1,45 @@
 {
-  "memory":"4096",
-  "networkMode":"awsvpc",
-  "cpu":"1024",
-  "family": "customer_churn_taskdefinition",
-  "taskRoleArn": "arn:aws:iam::959999474169:role/ECSTaskExecutionRole",
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
-  "containerDefinitions": [
-    {
-      "name": "customer_churn_container",
-      "image": "959999474169.dkr.ecr.us-east-1.amazonaws.com/aws-nodejs-sample:v1",
-      "memory": 200,
-      "cpu": 10,
-      "essential": true,
-      "logConfiguration":{
-            "logDriver":"awslogs",
-            "options":{
-               "awslogs-group":"/ecs/",
-               "awslogs-region":"us-east-1",
-               "awslogs-stream-prefix":"ecs"
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:959999474169:task-definition/customer_churn_task_definition:3",
+    "containerDefinitions": [
+        {
+            "name": "customer_churn_container",
+            "image": "959999474169.dkr.ecr.us-east-1.amazonaws.com/banking_customer_churn_ecr_repo:latest",
+            "cpu": 0,
+            "memoryReservation": 1024,
+            "portMappings": [
+                {
+                    "name": "customer_churn_container-5000-tcp",
+                    "containerPort": 5000,
+                    "hostPort": 5000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/customer_churn_prediction",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
             }
-         },
-      "portMappings":[
-            {
-               "hostPort":5000,
-               "containerPort":5000,
-               "protocol":"tcp"
-            }
-         ],
-      "memoryReservation":1024
+        }
+    ],
+    "family": "customer_churn_task_definition",
+    "executionRoleArn": "arn:aws:iam::959999474169:role/ECSTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "4096",
+    "tags": {
+      "application": "banking-customer-churn-application"
     }
-  ]
 }
