@@ -1,3 +1,6 @@
+## This is needed only in case of ECS-Blue Green Deployment.
+## Keeping it for reference, but commenting out so that it is not picked up in the  terraform build
+
 resource "aws_codedeploy_app" "banking-customer-churn-app" {
   compute_platform = "ECS"
   name             = "banking-customer-churn-app"

@@ -13,7 +13,7 @@ resource "aws_ecs_service" "banking_customer_churn_service" {
   tags                               = local.tags
   tags_all                           = local.tags
 
-  task_definition = format("%s:%s", aws_ecs_task_definition.customer_churn_taskdefinition.family, aws_ecs_task_definition.customer_churn_taskdefinition.revision)
+  task_definition = format("%s:%s", aws_ecs_task_definition.customer_churn_task_definition.family, aws_ecs_task_definition.customer_churn_task_definition.revision)
 
   # deployment_circuit_breaker {
   #   enable   = true
@@ -36,5 +36,5 @@ resource "aws_ecs_service" "banking_customer_churn_service" {
     subnets          = local.subnets
   }
 
-  depends_on = [aws_ecs_task_definition.customer_churn_taskdefinition]
+  depends_on = [aws_ecs_task_definition.customer_churn_task_definition]
 }

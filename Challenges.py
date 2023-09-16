@@ -66,3 +66,17 @@ code_pipeline_service_role = "arn:aws:iam::959999474169:role/codepipeline_servic
 import aws_codedeploy_app.banking-customer-churn-app banking-customer-churn-app
 
 terraform import aws_codedeploy_deployment_group.banking-customer-churn-app-deploy banking-customer-churn-app:banking-customer-churn-app-deploy
+"""
+
+"""
+    Testing the application in local using docker image
+    
+    docker build -t banking-churn-prediction-image .
+    docker run -dp 127.0.0.1:5000:5000 banking-churn-prediction-image
+        
+    docker build -t stacksimplify/mynginx_image1:v1 .
+    docker run --name mynginx1 -p 80:80 -d sudhanshusingh2112/banking-churn-prediction-image:latest
+    
+    Replace your docker hub account Id
+    docker build -t <your-docker-hub-id>/mynginx_image1:v1 .
+    docker run --name mynginx1 -p 80:80 -d sudhanshusingh2112/banking-churn-prediction-image:latest
