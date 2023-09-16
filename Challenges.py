@@ -74,9 +74,10 @@ terraform import aws_codedeploy_deployment_group.banking-customer-churn-app-depl
     docker build -t banking-churn-prediction-image .
     docker run -dp 127.0.0.1:5000:5000 banking-churn-prediction-image
         
-    docker build -t stacksimplify/mynginx_image1:v1 .
-    docker run --name mynginx1 -p 80:80 -d sudhanshusingh2112/banking-churn-prediction-image:latest
+    docker build -t sudhanshusingh2112/banking-churn-prediction-image:latest .
+    docker run --name app -p 5000:5000 -d sudhanshusingh2112/banking-churn-prediction-image:latest
     
     Replace your docker hub account Id
     docker build -t <your-docker-hub-id>/mynginx_image1:v1 .
     docker run --name mynginx1 -p 80:80 -d sudhanshusingh2112/banking-churn-prediction-image:latest
+"""
