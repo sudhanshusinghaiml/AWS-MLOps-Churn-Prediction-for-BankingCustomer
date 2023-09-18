@@ -2,7 +2,8 @@ resource "aws_ecs_task_definition" "customer_churn_task_definition" {
   container_definitions = jsonencode(
     [
       {
-        image     = "959999474169.dkr.ecr.us-east-1.amazonaws.com/banking_customer_churn_ecr_repo:latest"
+        # image     = "959999474169.dkr.ecr.us-east-1.amazonaws.com/banking_customer_churn_ecr_repo:latest"
+        image = format("%s%s", aws_ecr_repository.banking_customer_churn_ecr_repo.repository_url, ":latest")
         essential = true
         logConfiguration = {
           logDriver = "awslogs"

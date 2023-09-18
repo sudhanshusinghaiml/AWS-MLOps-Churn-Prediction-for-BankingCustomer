@@ -3,7 +3,7 @@ resource "aws_codebuild_project" "banking_customer_churn_project" {
   build_timeout          = 60
   concurrent_build_limit = 1
   description            = "Banking Customer Churn Prediction Code Build Project"
-  encryption_key         = "arn:aws:kms:us-east-1:959999474169:alias/aws/s3"
+  encryption_key         = local.s3_encryption_key
   name                   = "banking_customer_churn_project"
   project_visibility     = "PRIVATE"
   queued_timeout         = 480

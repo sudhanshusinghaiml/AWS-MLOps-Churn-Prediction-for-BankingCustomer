@@ -16,8 +16,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "terraform-backend-15091043"
-    key    = "banking-customer-churn-prediction-app/backend/terraform.tfstate"
+    bucket = "terraform-backend-18091923"
+    key    = "banking-customer-churn-prediction-backend/terraform.tfstate"
     region = "us-east-1"
   }
 }

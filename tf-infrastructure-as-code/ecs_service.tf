@@ -8,20 +8,20 @@ resource "aws_ecs_service" "banking_customer_churn_service" {
   health_check_grace_period_seconds  = 0
   desired_count                      = 2
   launch_type                        = "FARGATE"
-  platform_version                   = "1.4.0" # "LATEST"
+  platform_version                   = "LATEST"
   scheduling_strategy                = "REPLICA"
   tags                               = local.tags
   tags_all                           = local.tags
 
   task_definition = format("%s:%s", aws_ecs_task_definition.customer_churn_task_definition.family, aws_ecs_task_definition.customer_churn_task_definition.revision)
 
-  # deployment_circuit_breaker {
-  #   enable   = true
-  #   rollback = true
-  # }
+  deployment_circuit_breaker {
+    enable   = true
+    rollback = true
+  }
 
   deployment_controller {
-    type = "CODE_DEPLOY"
+    type = "ECS"
   }
 
   load_balancer {
