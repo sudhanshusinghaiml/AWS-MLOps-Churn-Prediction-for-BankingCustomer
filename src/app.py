@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
 from flask_cors import cross_origin
 from ModelTrainingEngine import model_training_pipeline
 import CustomerChurnPredictor

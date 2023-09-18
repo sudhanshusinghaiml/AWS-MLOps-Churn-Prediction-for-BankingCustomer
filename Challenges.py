@@ -22,9 +22,9 @@ terraform show --> It will show the list of all the resources that we have creat
 We can copy the details of code build and save it for our reference.
 
 """
-
+# ======================================================================================
 # Other Terraform Commands
-
+# ======================================================================================
 """
 Terraform Commands-
     terraform console -> will get you into terraform CLI where we can test out our codes
@@ -71,11 +71,14 @@ terraform import aws_codedeploy_deployment_group.banking-customer-churn-app-depl
 """
     Testing the application in local using docker image
     
-    docker build -t banking-churn-prediction-image .
-    docker run -dp 127.0.0.1:5000:5000 banking-churn-prediction-image
+    docker system prune --volumes -a -f 
+    
+    docker build -t banking-churn-prediction-image . 
+    
+    
+    docker run -dp 5000:5000 bankingcustomerchurnprediction
         
-    docker build -t sudhanshusingh2112/banking-churn-prediction-image:latest .
-    docker run --name app -p 5000:5000 -d sudhanshusingh2112/banking-churn-prediction-image:latest
+    docker logs [container id]
     
     Replace your docker hub account Id
     docker build -t <your-docker-hub-id>/mynginx_image1:v1 .

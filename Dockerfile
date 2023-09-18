@@ -1,8 +1,8 @@
-FROM python:3.11-slim
-COPY BankingChurnPredictionApp/requirements.txt .
+FROM python
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 WORKDIR /banking_churn_prediction
-COPY BankingChurnPredictionApp .
+COPY . .
 WORKDIR /banking_churn_prediction/src
 RUN mkdir -p logs
 RUN ["chmod", "+x", "gunicorn.sh"]
