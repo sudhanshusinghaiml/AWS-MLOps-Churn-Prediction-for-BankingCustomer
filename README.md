@@ -51,7 +51,7 @@ $ pip install -r requirements.txt
 - Random Forest Classifier Algorithm was selected as the best model for performance based on "Recall" as performance metrics
   * ***[Model Scores for Training Data](https://github.com/sudhanshusinghaiml/AWS-MLOps-Churn-Prediction-for-BankingCustomer/blob/develop/outputimages/PerformanceScoreTrainingData.png)***
     
-  ![Scores for Training Data](https://github.com/sudhanshusinghaiml/AWS-MLOps-Churn-Prediction-for-BankingCustomer/blob/develop/outputimages/PerformanceScoreonTrainingData.png)
+  ![Scores for Training Data](https://github.com/sudhanshusinghaiml/AWS-MLOps-Churn-Prediction-for-BankingCustomer/blob/develop/outputimages/PerformanceScoreTrainingData.png)
 
   * ***[Model Scores for Validation Data](https://github.com/sudhanshusinghaiml/AWS-MLOps-Churn-Prediction-for-BankingCustomer/blob/develop/outputimages/PerformanceScoreonValidationData.png)***
     
